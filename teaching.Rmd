@@ -1,0 +1,16 @@
+---
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+     
+          
+               
+               
+# Queen Mary University of London
+
+This academic year I will be running seminars on:
+
+- POL112 Introduction to Politics
+- POL252 Political Research

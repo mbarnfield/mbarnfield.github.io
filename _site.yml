@@ -1,0 +1,21 @@
+name: "Matthew Barnfield"
+output_dir: "."
+navbar:
+  title: "Matthew Barnfield"
+  left:
+    - text: "Publications"
+      href: publications.html
+    - text: "Software"
+      href: software.html
+    - text: "Teaching"
+      href: teaching.html
+    - text: "Blog"
+      href: blog.html
+  right:
+    - icon: fa-github fa-lg
+      href: http://github.com/mbarnfield
+    - icon: fa-twitter fa-lg
+      href: https://twitter.com/m_barnfield
+output:
+  html_document:
+    theme: paper

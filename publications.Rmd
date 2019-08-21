@@ -1,0 +1,13 @@
+---
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+   
+      
+         
+         
+# Journal articles
+
+Barnfield, M. (2019) Think twice before Jumping on the Bandwagon: Clarifying Concepts in Research on the Bandwagon Effect. Forthcoming at *Political Studies Review*.
