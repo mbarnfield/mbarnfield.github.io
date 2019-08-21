@@ -4,10 +4,6 @@ output:
     toc: true
     toc_float: true
 ---
-    
-        
-            
-            
 
 # `R` packages
 
@@ -20,3 +16,7 @@ output:
 ## Contributor
 
 [`cregg`](https://github.com/leeper/cregg) --- Simple conjoint analyses, tidying, and visualization (created by [Thomas Leeper](https://thomasleeper.com))
+
+# GitHub
+
+All the code I write that is worth sharing is on [my GitHub page](https://github.com/mbarnfield), and I intend to add more there soon.
