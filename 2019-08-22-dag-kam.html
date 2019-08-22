@@ -12,7 +12,7 @@
 
 
 
-<title></title>
+<title>DAGs for moderated treatment effects</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -251,6 +254,63 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -258,6 +318,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -309,23 +379,21 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">DAGs for moderated treatment effects</h1>
+<h4 class="date">August 2019</h4>
 
 </div>
 
 
-<p><img src="images/mgb.jpg" style="width:20%; border:5px solid; margin-right: 20px" align="left"></p>
-<p>I am a political science PhD student at Queen Mary University of London. Broadly, I am interested in comparative political behaviour and public opinion. I’m also, predictably, into <code>R</code>, and applying it to methods of causal inference, using both experimental and observational data.</p>
-<p>My first academic article — a review paper on conceptual issues in research on the ‘bandwagon effect’ — is forthcoming at <a href="https://journals.sagepub.com/home/psw">Political Studies Review</a>. I have other projects underway, including a paper on causal inference and endogeneity in the relationship between electoral expectations and vote choice. I’m also working on software, including <a href="https://github.com/mbarnfield/cjbae"><code>cjbae</code></a>, an <code>R</code> package I’m writing with <a href="https://twitter.com/PoliSciJack">Jack Bailey</a>. I dabble in election forecasting and predictive modelling for Fantasy Premier League scores.</p>
-<p>I graduated from my BA in Modern Languages and European Studies at the <a href="https://www.bath.ac.uk">University of Bath</a> in 2017, following this with a <a href="https://www.bath.ac.uk/courses/postgraduate-2019/taught-postgraduate-courses/mres-politics-and-international-studies-full-time/">Master’s degree in Political Research</a>. My Master’s dissertation, supervised by <a href="http://www.peter-allen.co.uk">Peter Allen</a>, studied post-decision attitude change among Labour-Conservative vote switchers at the 2017 general election. I joined <a href="https://www.qmul.ac.uk/politics/">SPIR at Queen Mary</a> in 2018. My PhD supervisors are <a href="http://www.sajuria.com">Javier Sajuria</a> and <a href="https://www.qmul.ac.uk/politics/staff/profiles/cowleyphilip.html">Philip Cowley</a>.</p>
-<p><strong>Matthew Barnfield</strong><br />
-School of Politics and International Relations<br />
-Queen Mary University of London<br />
-ArtsOne, Mile End Road<br />
-E1 4NS<br />
-<a href="mailto:m.barnfield@qmul.ac.uk">m.barnfield@qmul.ac.uk</a></p>
+<div id="daggy" class="section level1">
+<h1>Daggy</h1>
+<p>DAGs help a lot yes they do</p>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -358,6 +426,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

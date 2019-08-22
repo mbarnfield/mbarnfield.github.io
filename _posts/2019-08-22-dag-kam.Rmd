@@ -1,0 +1,230 @@
+---
+output:
+  bookdown::html_document2: 
+    toc: true
+    toc_float: true
+layout: post
+title: DAGging moderated treatment effects
+description: Based on Kam and Trussler 2017
+categories: blog
+date: August 2019
+---
+
+## There's no harm in conditioning on pre-treatment variables, right? {-#noharm}
+
+I was reading a [paper, by Kam and Trussler](https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf), which I found through Mike DeCrescenzo's handy [causal inference reading list](https://mikedecr.github.io/teaching/causal-inf-2019/), and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. I was also struck by the fact that a few directed acyclic graphs could make it really clear where the problem lies. But anyway, where's the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on *post*-treatment variables, in an oft-misguided attempt to account for causal mechanisms, [can be problematic](https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/). But surely, if we've measured these things before the experimental exposure, we have nothing to worry about, right...?    
+
+## ... Wrong {-#wrong}
+
+Kam and Trussler set out to demonstrate that conditioning on, or interacting treatment exposure with, *observed* --- i.e., not experimentally assigned or manipulated --- variables is likely to introduce bias because the independent variables of interest are no longer exclusively *experimental*. Essentially, the benefit of an experiment, or RCT, is that exposure to the treatment is unconfounded. That is, random assignment is such that individuals with given predetermined characteristics aren't more likely to be exposed than not. This means that if you want to work out the effect of the exposure on the outcome --- usually the estimand of interest is the average treatment effect (ATE) --- it's as simple as Figure \@ref(fig:dag1).
+
+<br />
+
+```{r dag1, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='ATE estimation, DAG-style.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Exposure$};
+\node (o)  at (2, 0) [plain] {$Outcome$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+Randomisation here makes it such that there can never be any arrows going into $Exposure$, because it is completely randomly assigned (or, as-good-as). This means that even if there are other things that cause $Outcome$, simple bivariate linear regression of $Outcome$ on $Exposure$ will get you an unbiased estimate of your ATE.[^1]
+
+[^1]: As Kam and Trussler show, though, you might get a slightly more *efficient* estimate if you adjust for a proper covariate, where one exists. But here we're talking about bias.
+
+The problem is, Kam and Trussler point out, that we don't very often stop here. We want to know more about why our treatments have their effects, and importantly in this case, *for whom* they have these effects. That is, we often want to know whether different people are affected differently by treatments. Generically, is the effect dependent on some other, individual-level variable of interest? Specifically, is the effect of candidate race dependent on respondents' levels of xenophobic attitudes? Does the effect of policy framing vary according to levels of political awareness? From my own research, is the effect of party popularity on voting behaviour ideologically bounded?    
+
+To answer these sorts of questions, an intuitive approach is to condition on measures of relevant variables, taken prior to exposure. We know this avoids post-treatment bias, so it seems safe. All we're measuring is how an effect varies by some other factor. We might just visualise the different effect sizes by subgroup, or even include an interaction term for a given covariate with the treatment, for a more formal test.    
+
+When it comes to experiments, I'm particularly interested in [conjoint analysis](http://web.mit.edu/teppei/www/research/conjoint.pdf), and it is worth noting that the potential problem discussed here is very relevant to conjoints. Leeper, Hobolt and Tilley recently published a [paper in Political Analysis](https://www.cambridge.org/core/journals/political-analysis/article/measuring-subgroup-preferences-in-conjoint-experiments/4F2C21AC02753F1FFF2F5EA0F943C1B2) all about measuring heterogeneous treatment effects in conjoints, demonstrating that the prevalent approach of seeing how AMCEs vary by subgroup is flawed, because of the reliance on a reference category. I won't explain their argument in full, but it's easy to see how such an approach could be misguidedly applied to the conjoint framework based on its prevalence in traditional experiments, where it is not problematic *for this reason*. Both approaches, however, risk falling foul of Kam and Trussler's point.   
+
+## Visualising the problem {-#visualising}
+
+The reality, of course, is very rarely similar to what is implied by Figure \@ref(fig:dag1). It is almost always the case that the outcome of an experiment is subject to more than just the exposure. Otherwise, this would mean that every single person in an exposure group would respond to the treatment and nobody in the control group would react as if they had been treated. In a binary vote choice experiment where a treatment group is told the candidate is female and the exposure group receives no such information, we would expect all of the treatment group to vote for the candidate. Of course, this is never what happens (obviously the example is contrived, but you get the point). What *does* happen is that there are other factors which contribute to the decision, which are not manipulated by the treatment. Figure \@ref(fig:dag2) depicts this graphically.
+
+<br />
+
+```{r dag2, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Covariate, DAG-style.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Exposure$};
+\node (o) at (2, 0) [plain] {$Outcome$};
+\node (c) at (0, 2) [plain] {$Covariate$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+\draw[post] (c.south)  to (o.north) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+Avid DAGgers will note that this presents no problem for estimating the ATE, because there are no confounders opening up ['backdoor paths'](https://www.youtube.com/watch?v=l_7yIUqWBmE) to bias the causal estimate. What Figure \@ref(fig:dag2) shows, though, is that for a given individual, more goes into how they respond in an experiment than the treatment alone. They bring ideological, partisan, and other biases that skew their behaviour and responses. This means that treatment effects are not entirely *homogeneous*.   
+
+You might be starting to realise, though, that even Figure \@ref(fig:dag2) is likely a very simplified version of reality in most cases. What causes the covariate itself? It doesn't come from nowhere. Does the cause of that covariate have its own effect on $Outcome$? The potential backdoor paths are endless.   
+
+This leads me to the main point. In their paper, Kam and Trussler demonstrate how different model specifications minimise or increase bias based on the amount of covariates and whether they have interactive effects. I think the broad point, however, is worth stating clearly: in *most* cases, regardless of whether you hypothesise that $Treatment$ and $Covariate$ have an interactive effect or that they are just covariates, conditioning on $Covariate$ is likely to introduce bias. (There's the point. I got to it. Only took me 1000 words.)    
+
+Consider Figure \@ref(fig:dag3). Uh oh. It looks a lot like by conditioning on $Covariate$ we've opened up a non-causal path through $Confound$. Often this won't have a meaningful effect on your ATE estimate, as Kam and Trussler show, but the effects of your covariates and interaction terms are going to be off the mark. Perhaps **more importantly**, you will not be able to assign them a causal interpretation with a standard model-free experimental approach. That is, they have no causal meaning unless you explore the causal model and make feasible, transparent assumptions about unconfoundedness. 
+
+<br />
+
+```{r dag3, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Bias, DAG-style.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Exposure$};
+\node (o) at (2, 0) [plain] {$Outcome$};
+\node (c) at (0, 2) [plain] {$Covariate$};
+\node (z) at (4, 2) [plain] {$Confound$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+\draw[post] (c.south)  to (o.north) {};
+\draw[post] (z.west) to (c.east) {};
+\draw[post] (z.south) to (o.north) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being an ethnic minority on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.
+
+<br />
+
+```{r dag4, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='ATE estimation, effect of candidate ethnicity on vote choice.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Ethnicity$};
+\node (o)  at (2, 0) [plain] {$Vote$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+Yet you would of course expect that certain people would react differently to this information. Some people won't care about a candidate's ethnicity, others will prefer ethnic minority candidates, and others still will prefer non-ethnic minority candidates. So, naturally, you hypothesise that there will be treatment effect heterogeneity. You think that racial attitudes will moderate the effect. That is, those with more positive racial attitudes will be more likely to favour ethnic minority candidates. Importantly, these attitudes have *no effect* on assignment to treatment or control, but they do have an effect on vote choice, giving Figure \@ref(fig:dag5).
+
+<br />
+
+```{r dag5, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Effect of candidate ethnicity on vote choice with racial attitudes as covariate.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Ethnicity$};
+\node (o) at (2, 0) [plain] {$Vote$};
+\node (c) at (0, 2) [plain] {$Racial attitudes$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+\draw[post] (c.south) to (o.north) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+If this DAG represents an accurate model, then conditioning on $Racial attitudes$ will work. How you do this varies, and Kam and Trussler offer a comprehensive appraisal of different approaches. However, in terms of causal interpretation, you're on reasonably safe ground. But of course this is very unlikely to be the whole picture. That would look something more like Figure \@ref(fig:dag6).
+
+<br />
+
+```{r dag6, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Confounders confounders everywhere.'}
+\begin{center}
+
+\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
+\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
+\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+
+\begin{tikzpicture}[scale = .8]
+
+% Specify nodes
+\node (e) at (-2, 0)   [plain] {$Ethnicity$};
+\node (o) at (2, 0) [plain] {$Vote$};
+\node (c) at (0, 2) [plain] {$Racial attitudes$};
+\node (p) at (5, 2) [plain] {$Partisanship$};
+\node (a) at (2.5, 4) [plain] {$Age$};
+\node (i) at (7, 1) [plain] {$Ideology$};
+
+% Specify edges
+\draw[post] (e.east)  to (o.west) {};
+\draw[post] (c.south) to (o.north) {};
+\draw[post] (a.210)  to (c.north) {};
+\draw[post] (a.330) to (p.north) {};
+\draw[post] (p.west)  to (c.east) {};
+\draw[post] (i.170) to (p.south) {};
+\draw[post] (i.west) to (c.350) {};
+\draw[post] (i.190) to (o.east) {};
+\draw[post] (p.south) to (o.north) {};
+
+\end{tikzpicture}
+\end{center}
+\vspace{.5cm}
+```
+
+<br />
+
+I don't mean to posit that this DAG is accurate, but instead to demonstrate the sort of can of worms we open when we condition on observed covariates.[^2] As Kam and Trussler put it, analysing experiments in this way puts you 'at the nexus of experimental and observational approaches'. What this means is that, where random assignment allows model-free, easy identification of causal effects, the inclusion of variables that are *observed* rather than *manipulated* in your analysis means that causal interpretation requires the same sorts of assumptions and adjustments that are required in observational research. It is not enough to condition on a covariate without setting out the model assumptions behind that.   
+
+[^2]: Incidentally, this DAG implies that adjustment for $Partisanship$ and $Ideology$ would be sufficient.
+
+It is very possible that the amount of actual bias in your causal estimates, even in a situation like Figure \@ref(fig:dag6) will be limited, but the *degree* of bias is not really the point. The point is that causal assertions imply philosophical commitments, which we violate with model-free approaches involving observational data.   
+
+A lot of attention seems to have been paid recently to issues such as post-treatment bias, but Kam and Trussler's paper makes the important point that even variables observed pre-treatment can bias causal estimates when conditioned on. I haven't really said anything they don't say more convincingly in their article, but I think DAGs help clarify where the problems come from. I also hope that I haven't misunderstood or misrepresented their argument.    
+
+## Model {-#model}
+
+As for what can be done: model. If you want to make causal assertions involving observed variables and not just experimental data, you need a causal model. Think about your model. Be transparent about your assumptions. Where possible, you might want to limit the need for such assumptions by [randomly assigning covariates](https://www.cambridge.org/core/journals/political-analysis/article/analyzing-causal-mechanisms-in-survey-experiments/05B982CEB2A9E3A10BF0C36F5D12711A). Conjoint analysis makes this easy, but not everything can be randomised. You can't change who your respondents are. 

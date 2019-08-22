@@ -4,5 +4,9 @@ output:
     toc: true
     toc_float: true
 ---
-   
-I might write some stuff here some time.
+
+# Blog
+
+## DAGs help to show why interacting with observed moderators can bias experimental findings
+
+<a href="_posts/2019-08-22-dag-kam.html">I use DAGs to clarify the argument put forward in the excellent Kam and Trussler (2017)</a>
