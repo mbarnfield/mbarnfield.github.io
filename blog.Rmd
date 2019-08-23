@@ -11,7 +11,7 @@ title: Blog
 
 ## There's no harm in conditioning on pre-treatment variables, right? {-#noharm}
 
-I was reading a [paper by Kam and Trussler](https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf), which I found through Mike DeCrescenzo's handy [causal inference reading list](https://mikedecr.github.io/teaching/causal-inf-2019/), and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. I was also struck by the fact that a few directed acyclic graphs could make it really clear where the problem lies. But anyway, where's the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on *post*-treatment variables, in an oft-misguided attempt to account for causal mechanisms, [can be problematic](https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/). But surely, if we've measured these things before the experimental exposure, we have nothing to worry about, right...?    
+I was reading a [paper by Kam and Trussler](https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf), which I found through Mike DeCrescenzo's handy [causal inference reading list](https://mikedecr.github.io/teaching/causal-inf-2019/), and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. We don't tend to think about the fact that observed covariates are subject to confounding and therefore create complications when used to analyse treatment effect heterogeneity. I was also struck by the fact that a few directed acyclic graphs, which the paper does not employ, could make it really clear where the problem lies. But anyway, where's the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on *post*-treatment variables, in an oft-misguided attempt to account for causal mechanisms, [can be problematic](https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/). But surely, if we've measured these things before the experimental exposure, we have nothing to worry about, right...?    
 
 ## ... Wrong {-#wrong}
 
@@ -121,7 +121,9 @@ Consider Figure \@ref(fig:dag3). Uh oh. It looks a lot like by conditioning on $
 
 <br />
 
-If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being an ethnic minority on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.
+If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being from an ethnic minority background on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.[^3]
+
+[^3]: Assume here that ethnic minority status is binary, and the analysis does not distinguish between different ethnicities beyond this.
 
 <br />
 
@@ -216,14 +218,14 @@ If this DAG represents an accurate model, then conditioning on $Racial attitudes
 
 <br />
 
-I don't mean to posit that this DAG is accurate, but instead to demonstrate the sort of can of worms we open when we condition on observed covariates.[^2] As Kam and Trussler put it, analysing experiments in this way puts you 'at the nexus of experimental and observational approaches'. What this means is that, where random assignment allows model-free, easy identification of causal effects, the inclusion of variables that are *observed* rather than *manipulated* in your analysis means that causal interpretation requires the same sorts of assumptions and adjustments that are required in observational research. It is not enough to condition on a covariate without setting out the model assumptions behind that.   
+I don't mean to posit that this DAG is accurate, but instead to demonstrate the sort of can of worms we open when we condition on observed covariates.[^3] As Kam and Trussler put it, analysing experiments in this way puts you 'at the nexus of experimental and observational approaches'. What this means is that, where random assignment allows model-free, easy identification of causal effects, the inclusion of variables that are *observed* rather than *manipulated* in your analysis means that causal interpretation requires the same sorts of assumptions and adjustments that are required in observational research. It is not enough to condition on a covariate without setting out the model assumptions behind that.   
 
-[^2]: Incidentally, this DAG implies that adjustment for $Partisanship$ and $Ideology$ would be sufficient.
+[^3]: Incidentally, this DAG implies that adjustment for $Partisanship$ and $Ideology$ would be sufficient.
 
 It is very possible that the amount of actual bias in your causal estimates, even in a situation like Figure \@ref(fig:dag6) will be limited, but the *degree* of bias is not really the point. The point is that causal assertions imply philosophical commitments, which we violate with model-free approaches involving observational data.   
 
 ## Model {-#model}
 
-A lot of attention seems to have been paid recently to issues such as post-treatment bias, but Kam and Trussler's paper makes the important point that even variables observed pre-treatment can bias causal estimates when conditioned on. I haven't really said anything they don't say more convincingly in their article, but I think DAGs help clarify where the problems come from. I also hope that I haven't misunderstood or misrepresented their argument.    
+A lot of attention seems to have been paid recently to issues such as post-treatment bias, but Kam and Trussler's paper makes the important point that even variables observed pre-treatment can bias some causal estimates when conditioned on --- just not usually your basic ATE. I haven't really said anything they don't say more convincingly in their article, but I think DAGs help clarify where the problems come from. I also hope that I haven't misunderstood or misrepresented their argument.    
 
 As for what can be done: model. If you want to make causal assertions involving observed variables and not just experimental data, you need a causal model. Think about your model. Be transparent about your assumptions. Where possible, you might want to limit the need for such assumptions by [randomly assigning covariates](https://www.cambridge.org/core/journals/political-analysis/article/analyzing-causal-mechanisms-in-survey-experiments/05B982CEB2A9E3A10BF0C36F5D12711A). Conjoint analysis makes this easy, but not everything can be randomised. You can't change who your respondents are. 
