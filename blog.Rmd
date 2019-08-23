@@ -121,9 +121,9 @@ Consider Figure \@ref(fig:dag3). Uh oh. It looks a lot like by conditioning on $
 
 <br />
 
-If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being from an ethnic minority background on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.[^3]
+If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being from an ethnic minority background on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.[^2]
 
-[^3]: Assume here that ethnic minority status is binary, and the analysis does not distinguish between different ethnicities beyond this.
+[^2]: Assume here that ethnic minority status is binary, and the analysis does not distinguish between different ethnicities beyond this.
 
 <br />
 
