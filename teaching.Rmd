@@ -4,9 +4,8 @@ output:
     toc: true
     toc_float: true
 ---
-     
-          
-               
+
+<br />            
                
 # Queen Mary University of London
 

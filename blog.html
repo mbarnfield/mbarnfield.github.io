@@ -384,8 +384,10 @@ div.tocify {
 </div>
 
 
+<p><br /></p>
 <div id="dagging" class="section level1 unnumbered">
 <h1>DAGging the problem with conditioning on a pre-treatment moderator - August 2019</h1>
+<p><br /></p>
 <div id="noharm" class="section level2 unnumbered">
 <h2>There’s no harm in conditioning on pre-treatment variables, right?</h2>
 <p>I was reading a <a href="https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf">paper by Kam and Trussler</a>, which I found through Mike DeCrescenzo’s handy <a href="https://mikedecr.github.io/teaching/causal-inf-2019/">causal inference reading list</a>, and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. We don’t tend to think about the fact that observed covariates are subject to confounding and therefore create complications when used to analyse treatment effect heterogeneity. I was also struck by the fact that a few directed acyclic graphs, which the paper does not employ, could make it really clear where the problem lies. But anyway, where’s the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on <em>post</em>-treatment variables, in an oft-misguided attempt to account for causal mechanisms, <a href="https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/">can be problematic</a>. But surely, if we’ve measured these things before the experimental exposure, we have nothing to worry about, right…?</p>
