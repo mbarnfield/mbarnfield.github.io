@@ -4,8 +4,9 @@ output:
     toc: true
     toc_float: true
     toc_depth: 4
-title: Blog
+title: Causal inference, political science
 ---
+<br />
 <br />
 
 # DAGging the problem with conditioning on a pre-treatment moderator - August 2019 {-#dagging}

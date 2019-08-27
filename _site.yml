@@ -11,6 +11,8 @@ navbar:
       href: teaching.html
     - text: "Blog"
       href: blog.html
+    - text: "FPL"
+      href: fpl.html
   right:
     - icon: fa-github fa-lg
       href: http://github.com/mbarnfield

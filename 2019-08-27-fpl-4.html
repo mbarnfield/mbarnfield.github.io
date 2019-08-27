@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Captaincy choice, FPL gameweek 4 2019</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Matthew Barnfield</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="publications.html">Publications</a>
+</li>
+<li>
+  <a href="software.html">Software</a>
+</li>
+<li>
+  <a href="teaching.html">Teaching</a>
+</li>
+<li>
+  <a href="blog.html">Blog</a>
+</li>
+<li>
+  <a href="fpl.html">FPL</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="http://github.com/mbarnfield">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/m_barnfield">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Captaincy choice, FPL gameweek 4 2019</h1>
+<h4 class="date">August 2019</h4>
+
+</div>
+
+
+<div id="picking-an-fpl-captain-gameweek-4" class="section level2">
+<h2><span class="header-section-number">0.1</span> Picking an FPL captain: Gameweek 4</h2>
+<p>Making a good captaincy choice can have a considerable impact on your weekly points total in Fantasy Football. In gameweek 3, Mo Salah (c) would’ve raked you in 30 points, whereas the more popular choice of Raheem Sterling (c) got me and many others a nonetheless healthy 16.</p>
+<p>The problem with this example is of course that <em>it made more sense to pick Sterling</em>. No-one should regret going Sterling (c) over Salah (c). There are two simple reasons for this:</p>
+<ol style="list-style-type: decimal">
+<li>Sterling was the <strong>more popular</strong> pick<br />
+</li>
+<li>Sterling had a higher <strong>expected points</strong> value</li>
+</ol>
+<p>Hindsight is everything in the way we assess these decisions, but really we should remember these two key points, because you can’t base a decision on hindsight.</p>
+<p>This captaincy pick series represents me moving away from entirely depending on point 1 in my captaincy choices, towards depending entirely on point 2. Usually, I think players tend to take some intuitive weighted average across the two, having a vague idea who most people will pick and who will get the most points. Aubameyang is playing Brighton at home? Probably a popular, high-scoring option. Literally anyone against Liverpool or City? Probably not going to do that well, and no-one is going to pick them. I, however, strictly followed the <a href="https://www.reddit.com/r/FantasyPL/comments/ctuesf/game_week_3_captain_poll/">/r/FantasyPL subreddit’s weekly captaincy poll</a> all of last season. For the most part, this served me well. The results of the poll are a good proxy for which players are being given the armband by the majority of middling-to-good FPL contestants. Following this poll so far this season would’ve given you 46 points from your captains. Pretty good. This makes sense, because good players make sensible captain choices.</p>
+<p>The reason I depend on the poll so heavily, though, is that following it minimises the extent to which my points differ from those of good players. You can’t go far wrong by following the poll results and making sensible transfers elsewhere in your team.</p>
+<p>I don’t really like doing this, though. One reason is that there often develops a bit of a ‘hivemind’ mentality whereby the subreddit arrives at a consensus about which players to pick, without this necessarily being the best option. More importantly, though, you’re essentially relying on an (admittedly usually pretty reliable) aggregation of heuristics. While some attentive players like to get into the nitty-gritty of XG and players’ history against certain teams, usually I think most players just loosely average over the following considerations:</p>
+<ol style="list-style-type: decimal">
+<li>Class: which of my players is the best?</li>
+<li>Form: which of my players is on the best form?</li>
+<li>Fixture: which of my players is playing the worst team?</li>
+<li>Venue: which of my players are playing at home?</li>
+<li>Game time: which of my players will get 90 minutes?</li>
+</ol>
+<p>Often, this kind of thinking gives fairly clear answers. Right now it would be hard to look past Salah at home to anyone in the bottom half of the table, for example. The problem comes when it’s not that clear-cut. Kane at home against Watford? Or Sterling away against Brighton? Or Aubameyang at home against Southampton? The popular mantra of ‘form over fixtures’ can help with this, but usually your captain considerations are players who don’t tend to have severe dips in form. They are dependable choices <em>because</em> they are consistent.</p>
+</div>
+<div id="model" class="section level2 unnumbered">
+<h2>The model</h2>
+<p>In these sorts of situations, it can be hard to pick your captain. So I have coded a Bayesian multilevel model that estimates each player’s gameweek points based on their (time-weighted)<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> previous performance, their opponent, home/away, and how many minutes they get. The multilevel component allows for varying intercepts by team, factoring in the points variance at team level. This helps distinguish between players who do well only because their team does well and those who do well regardless. The model is written in <code>R</code>, using <a href="https://github.com/paul-buerkner/brms"><code>brms</code></a>. It’s really simple, and I just see it as a way to formalise the thought process in 1-5 above. When you’re making the sorts of tough decisions above, you can depend on a more meaningful and formal, probabilistic points prediction which factors in the considerations you would usually mull over heuristically.</p>
+<p>I get the data for this from <a href="https://github.com/vaastav/Fantasy-Premier-League"><code>vaastav</code>’s amazing GitHub repo</a>, and using datapasta to copy the raw-format data into a dataframe in <code>R</code>, and then engaging in a lot of tidy wrangling to get simple data on each players points, opponent, team, home/away, and minutes for each gameweek. The model is originally fit with a weakly informative, fairly wide prior. I then update the model after each gameweek, and get fitted predictions for the following gameweek. The <a href="https://github.com/mbarnfield/fpl">code is on my github</a>, but I’m yet to completely tidy it up and make it fully replicable (i.e., you still have to fudge some stuff manually).</p>
+<p>Here I show the ten players with the highest expected points total for gameweek four. I will do this each gameweek. However, it’s pretty simple also to pass a dataframe of your own team to fit predictions to, and then choose between your own players. You should really have one or more of these top ten in your team, though.</p>
+<p><br /></p>
+<p><img src="images/gameweek_4_topten.png" style="width:75%; border:0px solid; margin-right: 20px" align="left"></p>
+<p><br /></p>
+<p>The colour of each player’s point-range marker (which signifies the 95% confidence interval on the estimate) is coloured according to their price: more expensive players are darker. Opponents are labeled. Essentially, the model recommends you captain Teemu Pukki against West Ham. This is unsurprising because he is currently the highest-scoring player. You would expect this to change over the season, as the class of the more expensive players begins to tell. Unsurprisingly, the following four players are all priced at over 9.5 and all from Man City and Liverpool. It’s also relevant that the Man City players are up against Brighton, who don’t represent much of a challenge. Likewise, Salah seems to have been penalised by having Burnley, who have done well so far, as his opponent.</p>
+<p>You should really have one of those top five in your team, and be choosing between them for the captaincy this week. Choosing one of the remaining five options would be somewhat questionable, although it is interesting to see who is currently outplaying more premium options.</p>
+<p>Remember also that these estimates are quite volatile at this point. <code>brms</code> flags up several warnings when returning the results because the sample size is currently so low. By the end of the season, barring consistently freakishly good returns for the likes of Sterling, Pukki, Aguero and Salah, there is next to no chance the model will predict anyone scores over 10 points in a given week. There will simply be too many weeks in which these players are in the 2-6 range.</p>
+<p>All the model is doing, really, is describing in a principled way the sorts of things you are probably thinking already. Pukki is on flames, Sterling is an amazing asset, Salah is being Salah, Aguero is being Aguero. But this principled assessment is better than a biased heuristic one.</p>
+<p>I don’t have Pukki, so I will be captaining Sterling. On balance, he is probably the better option anyway, because his captain percentage is likely to be higher than Pukki’s. If for some reason you don’t want to, or can’t, captain any of these ten, I plot the top 25 below. Of course, you might also just want to see who’s there or thereabouts.</p>
+<p><br /></p>
+<p><img src="images/gameweek_4_top25.png" style="width:75%; border:0px solid; margin-right: 20px" align="left"></p>
+<p><br /></p>
+<p>Again, you would expect the composition of this top 25 to change a bit over time, with players like Lundstram (likely still to be a good value pick, but not a good captain choice) gradually replaced by the likes of Kane, Lacazette, Pépé, etc. The estimates will also become more interesting when I introduce weights to make more recent gameweeks count more in players’ estimates, bringing in a ‘form-factor’. At this point, form is kind of captured regardless because players haven’t really had time to peak and trough.</p>
+<p>What this plot makes more clear is the logic of what I’m trying to do. You might be weighing up, for example, Martial (c) vs Southampton against Salah (c) vs Burnley. You’re thinking that Burnley away is tough, whereas Martial could do well against The Saints. At this point (with the caveats I keep mentioning), the model is pretty sure you should go for Salah, of the two. It has attempted to account for the considerations you would be making here. But, of course, you have more data than the model. You’ve watched Salah and Martial over a few seasons. You might have an idea about how Burnley will adapt to play against Liverpool, how Martial might exploit some Southampton weakness you spotted watching MOTD. But if it’s a toss-up, I think this approach is a good one to follow.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I won’t implement the weightings until ~gameweek 8. I just don’t think they’re helpful yet.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
