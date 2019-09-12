@@ -18,6 +18,8 @@ navbar:
       href: http://github.com/mbarnfield
     - icon: fa-twitter fa-lg
       href: https://twitter.com/m_barnfield
+    - icon: fa-reddit fa-lg
+      href: https://www.reddit.com/user/pm_me_tidy_code
 output:
   html_document:
     theme: paper
