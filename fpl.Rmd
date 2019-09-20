@@ -4,7 +4,7 @@ output:
     toc: true
     toc_float: true
 layout: post
-title: Captaincy choice, FPL gameweek 5 2019
+title: Captaincy choice, FPL gameweek 6 2019
 categories: blog
 date: September 2019
 ---
