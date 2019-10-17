@@ -12,11 +12,11 @@
 
 
 
-<title>Teaching</title>
+<title>Captaincy choice, FPL gameweek 7 2019</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -109,33 +109,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 64px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -388,19 +388,30 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Teaching</h1>
+<h1 class="title toc-ignore">Captaincy choice, FPL gameweek 7 2019</h1>
+<h4 class="date">September 2019</h4>
 
 </div>
 
 
+<div id="picking-an-fpl-captain-gameweek-7" class="section level2 unnumbered">
+<h2>Picking an FPL captain: Gameweek 7</h2>
+<p>I don’t have much time to write this this week, so I’ll get straight to the changes I have made and the results! Long story short, it looks like the standard top four are your best bets for captain this week: Agüero, Sterling, Mané and Salah. If you have him, you should captain Agüero, but the other three are good picks too.</p>
+</div>
+<div id="deciding-how-to-determine-player-minutes" class="section level2 unnumbered">
+<h2>Deciding how to determine player minutes</h2>
+<p>Last week I discussed at length several changes I had made to the model. I make no such changes this week, with the model the same as it was then. The only differences now are in the way I predict the scores for the coming week. Last week, having introduced a minutes variable, I decided to assume players would play the same minutes they played the previous week and based their predictions on this. This led to some silly stuff though, such as De Bruyne not being in the top 25 because he was assumed to be playing 33 minutes. He went on to play and get a massive haul against Watford.</p>
+<p>This week, I have decided to base player minutes on an average over previous games. I take the previous five gameweeks and get a mean number of minutes for each player. I then go two different ways with this. I present one set of predictions where I assume the player will play this same number of minutes, and an alternative specification in which <em>all players whose average is over 45 minutes are assumed to play 90 minutes this week</em>. This is basically like asking the model how many points it would expect players who currently play regularly to get if they play 90 minutes this week. I don’t think this is particularly problematic because it reflects our own intuitions about captaincy picks, which, again, is the whole point of the model.</p>
+<p>The only other change to the predictions is that I now follow a more typical Bayesian workflow that allows me to present player predictions as distributions. I use <code>tidybayes</code> to take 2000 posterior fitted draws for each player and then plot these as a probability distribution. The colours also no longer correspond to price, which isn’t particularly useful, but to teams. I have tried to pick colours that accurately reflect the teams’ colours.</p>
+</div>
+<div id="results" class="section level2 unnumbered">
+<h2>Results</h2>
+<p>The plots of results are below. Pay attention to figure titles and captions because these clarify which minutes specification is being used. As usual and understandably, Agüero is top. He just keeps scoring, plays for the highest-scoring team, and is playing against an opponent, in Everton, that really isn’t firing on all cylinders. It’s worth noting that Sheffield Utd are actually doing quite a good job of preventing players scoring many FPL points against them, meaning Salah and Mané are actually penalised more by their opponent than Agüero and Sterling are, even though Sheffield are a promoted side and Everton PL stalwarts.</p>
+<p>Looking at the 90 minutes plot, in which players who have on average played over a half (45 mins) over their last five gameweeks are all assumed to play the same 90 minutes, the top four are the same as every week recently. KDB is quickly turning this into a top five, though, and he’s definitely a good pick too. I’d personally put more weight in this plot than the other one, which assumes all players play their average minutes, introducing variability in minutes. Interestingly, this puts Vardy and Pukki both ahead of Salah, because they get subbed off less often and less early. It also brings Aubameyang into the top 10 because he tends to play full 90 minutes every week. KDB drops out, meanwhile, because of that vicious Pep rotation wheel.</p>
+<p><img src="images/gameweek_7_top25_ext.png" style="width:100%; border:0px solid; margin-right: 20px" align="left"></p>
 <p><br /></p>
-<div id="queen-mary-university-of-london" class="section level1">
-<h1>Queen Mary University of London</h1>
-<p>This academic year I will be running seminars on:</p>
-<ul>
-<li>POL112 Introduction <em>into</em> Politics</li>
-<li>POL252 Political Research</li>
-</ul>
+<p><img src="images/gameweek_7_top25_av.png" style="width:100%; border:0px solid; margin-right: 20px" align="left"></p>
+<p>Unless I transfer in Agüero this week, which I might, I’ll be captaining Sterling - again. Surely he can’t burn me two weeks in a row? In <em>both</em> predictions he is my top projected points scorer. (Again, depends whether I get Agüero.) Good luck all!</p>
 </div>
 
 

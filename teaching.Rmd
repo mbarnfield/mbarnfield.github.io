@@ -14,5 +14,5 @@ title: Teaching
 
 This academic year I will be running seminars on:
 
-- POL112 Introduction to Politics
+- POL112 Introduction *into* Politics
 - POL252 Political Research
