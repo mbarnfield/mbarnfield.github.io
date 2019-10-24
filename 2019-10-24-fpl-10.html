@@ -407,8 +407,8 @@ div.tocify {
 <p>then this choice can sometimes be difficult some weeks. I think, this week, most people will captain a City asset. A City premium (Sterling/Agüero/etc) at home against Aston Villa, a promoted side, seems like a no-brainer. If it <em>does</em> seem like a no-brainer to you, then go for it. But, if you don’t think it’s that clear cut, and wish you could have some more fine-grained, quantitative way to assess your players based on Class, Form, Fixture, Team and Minutes, then you’ve come to the right place. Well, no, at the very least you’ve come to a place where someone is <em>trying to provide that</em>. My approach has its flaws. It’s expained more fully <a href="https://mbarnfield.github.io/2019-08-27-fpl-4.html">here</a> and <a href="https://mbarnfield.github.io/2019-10-17-fpl-9.html">here</a>.</p>
 <p>Each week I run a Bayesian multilevel model, using data from vastaav’s repo going back to gameweek 25 last season and up to the most recent gameweek, to model the effect of Class (captured by a prior based on price, and historical performance of players incorporated by including some of last season’s data), Form (captured by a recency/gameweek weighting which upweights more recent performance), Fixture (captured by an opponent variable and a home/away variable), Team (captured by specifying players are nested within teams — the multilevel component) and Minutes (captured by a simple numerical measure of minutes). To predict the best captains for the upcoming gameweek, I then fit the model to new data, containing each player, their upcoming opponent, etc, and get a fitted points prediction. However, <strong>my aim is not to predict points, but to model normally qualitative/heuristic captain selection methods quantitatively</strong>.</p>
 </div>
-<div id="expectation-vs-reality---gameweek-9" class="section level2 unnumbered">
-<h2>Expectation vs reality - gameweek 9</h2>
+<div id="expectation-vs-reality---gameweek-9" class="section level2">
+<h2><span class="header-section-number">0.1</span> Expectation vs reality - gameweek 9</h2>
 <p>Despite this, every week on Reddit I get requests for an expected/actual points comparison for each player. I don’t really want to do this, and besides, I present distributions of probable scores rather than point estimates anyway. What I’ll do, though, is a simple table of last week’s predicted top picks, how many points they ended up getting, and the actual highest point scorers. Then, week-on-week, it will become clear how often/infrequently the top picks according to the ‘captain-picking logic’ are actually among the top point scorers. Remember, though, that more often than not the top scorers will feature players you would <em>never dream of picking as your captain</em> so this comparison is a bit weird. Also, I’m doing this for the version where players who have played &gt;45 minutes average over the last 5 games are assumed to play 90 this week (see below).</p>
 <table>
 <thead>
@@ -484,33 +484,24 @@ div.tocify {
 </table>
 <p>As you can see, this was a particularly dodgy gameweek for seemingly ‘sensible’ captain picks. Very few people will have considered captaining any of the actual top ten. Only Sterling (4th) and Vardy (7th) got meaningful returns, and neither of these got them into the top ten overall. Bear in mind, of course, that neither Agüero nor Salah played. I couldn’t factor this in beforehand. If the model knew they were going to get 0 minutes, they would have been absolutely nowhere near the top ten. Here’s to hoping this week captains are more predictable.</p>
 </div>
-<div id="tammy-abraham" class="section level2 unnumbered">
-<h2>Tammy Abraham</h2>
+<div id="tammy-abraham" class="section level2">
+<h2><span class="header-section-number">0.2</span> Tammy Abraham</h2>
 <p>On the point about specifying 0 minutes, it’s worth noting that Tammy Abraham should probably be in both top 25s below. The reason he is not there is because the model doesn’t yet completely recognise that 0 minutes <strong>always</strong> means 0 points. The data I use has Tammy Abraham listed as a Chelsea player last season, but he never played, so never got any points. It knows this is mostly <em>because</em> he didn’t play, but still assigns some of the reason for his 0 minutes to him as a player. Even with this limitation, he very nearly makes the top 25 thanks to his performance this season. His fitted points ar around 3.5-4.5, putting him not too far off Rashford. I should have removed his data from last season by now, but I’m an idiot so I forgot to do this before running the model, which takes several hours, so I don’t have time to do it again before posting this week. I think, with only this season’s data, Tammy would look similar to Pukki, maybe slightly higher.</p>
 </div>
-<div id="average-minutes-and-90-minutes" class="section level2 unnumbered">
-<h2>Average minutes and 90 minutes</h2>
+<div id="average-minutes-and-90-minutes" class="section level2">
+<h2><span class="header-section-number">0.3</span> Average minutes and 90 minutes</h2>
 <p>A final thing about minutes is to remind you that I report two versions of the output. In one, every player is assumed to play the same amount of minutes this week as their average minutes over the last five gameweeks. In the other, every player with an average number of minutes over the last five greater than 45 (a half) is assumed to play 90 minutes (a whole game) this week. I’m open to suggestions on a better way to incorporate minutes into the output, but to me this seems fairly decent. I just can’t really factor in Pep’s wheel and other random variance in minutes.</p>
 </div>
-<div id="widened-prior" class="section level2 unnumbered">
-<h2>Widened prior</h2>
+<div id="widened-prior" class="section level2">
+<h2><span class="header-section-number">0.4</span> Widened prior</h2>
 <p>Worth noting also that this week I have finally widened the prior slightly. This prior is now a function of player price, to capture that we prefer to captain premiums (high-class players) but the standard deviation on it is now 1 instead of 0.5. This means it listens more to the data, so that everything can drift away from the prior more easily. Players like Pépé, priced around 9.5, seem to have now dropped down, because the model isn’t paying as much attention to their price and more to their actual performance.</p>
 </div>
-<div id="results" class="section level2 unnumbered">
-<h2>Results</h2>
+<div id="results" class="section level2">
+<h2><span class="header-section-number">0.5</span> Results</h2>
 <p>The results are below. Note that the model, based on the data it has, thinks that Spurs are an easier opponent to get points against currently than Villa (lol), so Mané is preferred over City assets. You have more data than the model though, and you know that Villa are a promoted side whereas Spurs are usually top 6, so you might disagree with it preferring Mané over Agüero. That’s fine. Disagree. Note also that all the differences between the usual top four are lessened when we assume that Agüero and Salah not starting was an anomaly (in the second output where we assume they’ll get 90 this week). Mané looks so much better than the others in the first output because he just keeps getting a lot of minutes. Salah comes right up into the top few from a much lower position, for example. Regardless of this, Salah is still generally outshone by Mané for the time being. Other than all that, these results are pretty typical and uncontroversial. Vardy has climbed up a bit, becoming an increasingly regular feature of the top five after another return last week. Remember, again, Tammy would probably be in the top 10 were it not for the inclusion of his last season data. He seems like a decent pick.</p>
 <p><img src="images/gameweek_10_top25_av.png" style="width:100%; border:0px solid; margin-right: 20px" align="left"></p>
 <p><br /></p>
 <p><img src="images/gameweek_10_top25_ext.png" style="width:100%; border:0px solid; margin-right: 20px" align="left"></p>
-<p>Matthew Barnfield</p>
-</div>
-<div id="other-posts" class="section level2 unnumbered">
-<h2>Other posts</h2>
-<p><a href="2019-08-27-fpl-4.html">Gameweek 4 captaincy pick and introduction to model</a></p>
-<p><a href="2019-09-12-fpl-5.html">Gameweek 5 captaincy pick, discussion of priors</a></p>
-<p><a href="2019-09-20-fpl-6.html">Gameweek 6 captaincy pick, discussion major model changes</a></p>
-<p><a href="2019-09-27-fpl-7.html">Gameweek 7 captaincy pick, discussion major model changes</a></p>
-<p><a href="2019-10-17-fpl-9.html">Gameweek 9 captaincy pick, partial reintrodution to model</a></p>
 </div>
 
 
