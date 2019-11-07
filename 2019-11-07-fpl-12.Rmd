@@ -55,24 +55,3 @@ That being said, this confidence is minimal when it comes to comparing the premi
 <br />
 
 <img src="images/gameweek_12_top25_all90.png" style="width:100%; border:0px solid; margin-right: 20px" align="left">
-
-Matthew Barnfield
-
-
-## Other posts {-}
-
-<a href="2019-08-27-fpl-4.html">Gameweek 4 captaincy pick and introduction to model</a>    
-
-<a href="2019-09-12-fpl-5.html">Gameweek 5 captaincy pick, discussion of priors</a>
-
-<a href="2019-09-20-fpl-6.html">Gameweek 6 captaincy pick, discussion major model changes</a>
-
-<a href="2019-09-27-fpl-7.html">Gameweek 7 captaincy pick, discussion major model changes</a>
-
-<a href="2019-10-17-fpl-9.html">Gameweek 9 captaincy pick, partial reintroduction to model</a>
-
-<a href="2019-10-24-fpl-10.html">Gameweek 10 captaincy pick, assessment of GW9 performance</a>
-
-<a href="2019-10-31-fpl-11.html">Gameweek 11 captaincy pick, assessment of GW10 performance</a>
-
-
