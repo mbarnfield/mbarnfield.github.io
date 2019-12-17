@@ -12,11 +12,11 @@
 
 
 
-<title>DAGs for moderated treatment effects</title>
+<title>DAGging pre-treatment moderation bias</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -109,33 +109,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 64px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -356,6 +356,9 @@ div.tocify {
 <li>
   <a href="blog.html">Blog</a>
 </li>
+<li>
+  <a href="fpl.html">FPL</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -370,6 +373,12 @@ div.tocify {
      
   </a>
 </li>
+<li>
+  <a href="https://www.reddit.com/user/pm_me_tidy_code">
+    <span class="fa fa-reddit fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -379,15 +388,102 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">DAGs for moderated treatment effects</h1>
+<h1 class="title toc-ignore">DAGging pre-treatment moderation bias</h1>
 <h4 class="date">August 2019</h4>
 
 </div>
 
 
-<div id="daggy" class="section level1">
-<h1>Daggy</h1>
-<p>DAGs help a lot yes they do</p>
+<p><br /> <br /></p>
+<div id="dagging" class="section level1 unnumbered">
+<h1>DAGging the problem with conditioning on a pre-treatment moderator - August 2019</h1>
+<p><br /></p>
+<div id="noharm" class="section level2 unnumbered">
+<h2>There’s no harm in conditioning on pre-treatment variables, right?</h2>
+<p>I was reading a <a href="https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf">paper by Kam and Trussler</a>, which I found through Mike DeCrescenzo’s handy <a href="https://mikedecr.github.io/teaching/causal-inf-2019/">causal inference reading list</a>, and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. We don’t tend to think about the fact that observed covariates are subject to confounding and therefore create complications when used to analyse treatment effect heterogeneity. I was also struck by the fact that a few directed acyclic graphs, which the paper does not employ, could make it really clear where the problem lies. But anyway, where’s the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on <em>post</em>-treatment variables, in an oft-misguided attempt to account for causal mechanisms, <a href="https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/">can be problematic</a>. But surely, if we’ve measured these things before the experimental exposure, we have nothing to worry about, right…?</p>
+</div>
+<div id="wrong" class="section level2 unnumbered">
+<h2>… Wrong</h2>
+<p>Kam and Trussler set out to demonstrate that conditioning on, or interacting treatment exposure with, <em>observed</em> — i.e., not experimentally assigned or manipulated — variables is likely to introduce bias because the independent variables of interest are no longer exclusively <em>experimental</em>. Essentially, the benefit of an experiment, or RCT, is that exposure to the treatment is unconfounded. That is, random assignment is such that individuals with given predetermined characteristics aren’t more likely to be exposed than not. This means that if you want to work out the effect of the exposure on the outcome — usually the estimand of interest is the average treatment effect (ATE) — it’s as simple as Figure <a href="#fig:dag1">1</a>.</p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag1"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag1-1.png" alt="ATE estimation, DAG-style." width="100%" />
+<p class="caption">
+Figure 1: ATE estimation, DAG-style.
+</p>
+</div>
+<p><br /></p>
+<p>Randomisation here makes it such that there can never be any arrows going into <span class="math inline">\(Exposure\)</span>, because it is completely randomly assigned (or, as-good-as). This means that even if there are other things that cause <span class="math inline">\(Outcome\)</span>, simple bivariate linear regression of <span class="math inline">\(Outcome\)</span> on <span class="math inline">\(Exposure\)</span> will get you an unbiased estimate of your ATE.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>The problem is, Kam and Trussler point out, that we don’t very often stop here. We want to know more about why our treatments have their effects, and importantly in this case, <em>for whom</em> they have these effects. That is, we often want to know whether different people are affected differently by treatments. Generically, is the effect dependent on some other, individual-level variable of interest? Specifically, is the effect of candidate race dependent on respondents’ levels of xenophobic attitudes? Does the effect of policy framing vary according to levels of political awareness? From my own research, is the effect of party popularity on voting behaviour ideologically bounded?</p>
+<p>To answer these sorts of questions, an intuitive approach is to condition on measures of relevant variables, taken prior to exposure. We know this avoids post-treatment bias, so it seems safe. All we’re measuring is how an effect varies by some other factor. We might just visualise the different effect sizes by subgroup, or even include an interaction term for a given covariate with the treatment, for a more formal test.</p>
+<p>When it comes to experiments, I’m particularly interested in <a href="http://web.mit.edu/teppei/www/research/conjoint.pdf">conjoint analysis</a>, and it is worth noting that the potential problem discussed here is very relevant to conjoints. Leeper, Hobolt and Tilley recently published a <a href="https://www.cambridge.org/core/journals/political-analysis/article/measuring-subgroup-preferences-in-conjoint-experiments/4F2C21AC02753F1FFF2F5EA0F943C1B2">paper in Political Analysis</a> all about measuring heterogeneous treatment effects in conjoints, demonstrating that the prevalent approach of seeing how AMCEs vary by subgroup is flawed, because of the reliance on a reference category. I won’t explain their argument in full, but it’s easy to see how such an approach could be misguidedly applied to the conjoint framework based on its prevalence in traditional experiments, where it is not problematic <em>for this reason</em>. Both approaches, however, risk falling foul of Kam and Trussler’s point.</p>
+</div>
+<div id="visualising" class="section level2 unnumbered">
+<h2>Visualising the problem</h2>
+<p>The reality, of course, is very rarely similar to what is implied by Figure <a href="#fig:dag1">1</a>. It is almost always the case that the outcome of an experiment is subject to more than just the exposure. Otherwise, this would mean that every single person in an exposure group would respond to the treatment and nobody in the control group would react as if they had been treated. In a binary vote choice experiment where a treatment group is told the candidate is female and the exposure group receives no such information, we would expect all of the treatment group to vote for the candidate. Of course, this is never what happens (obviously the example is contrived, but you get the point). What <em>does</em> happen is that there are other factors which contribute to the decision, which are not manipulated by the treatment. Figure <a href="#fig:dag2">2</a> depicts this graphically.</p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag2"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag2-1.png" alt="Covariate, DAG-style." width="100%" />
+<p class="caption">
+Figure 2: Covariate, DAG-style.
+</p>
+</div>
+<p><br /></p>
+<p>Avid DAGgers will note that this presents no problem for estimating the ATE, because there are no confounders opening up <a href="https://www.youtube.com/watch?v=l_7yIUqWBmE">‘backdoor paths’</a> to bias the causal estimate. What Figure <a href="#fig:dag2">2</a> shows, though, is that for a given individual, more goes into how they respond in an experiment than the treatment alone. They bring ideological, partisan, and other biases that skew their behaviour and responses. This means that treatment effects are not entirely <em>homogeneous</em>.</p>
+<p>You might be starting to realise, though, that even Figure <a href="#fig:dag2">2</a> is likely a very simplified version of reality in most cases. What causes the covariate itself? It doesn’t come from nowhere. Does the cause of that covariate have its own effect on <span class="math inline">\(Outcome\)</span>? The potential backdoor paths are endless.</p>
+<p>This leads me to the main point. In their paper, Kam and Trussler demonstrate how different model specifications minimise or increase bias based on the amount of covariates and whether they have interactive effects. I think the broad point, however, is worth stating clearly: in <em>most</em> cases, regardless of whether you hypothesise that <span class="math inline">\(Treatment\)</span> and <span class="math inline">\(Covariate\)</span> have an interactive effect or that they are just covariates, conditioning on <span class="math inline">\(Covariate\)</span> is likely to introduce bias. (There’s the point. I got to it. Only took me 1000 words.)</p>
+<p>Consider Figure <a href="#fig:dag3">3</a>. Uh oh. It looks a lot like by conditioning on <span class="math inline">\(Covariate\)</span> we’ve opened up a non-causal path through <span class="math inline">\(Confound\)</span>. Often this won’t have a meaningful effect on your ATE estimate, as Kam and Trussler show, but the effects of your covariates and interaction terms are going to be off the mark. Perhaps <strong>more importantly</strong>, you will not be able to assign them a causal interpretation with a standard model-free experimental approach. That is, they have no causal meaning unless you explore the causal model and make feasible, transparent assumptions about unconfoundedness.</p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag3"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag3-1.png" alt="Bias, DAG-style." width="100%" />
+<p class="caption">
+Figure 3: Bias, DAG-style.
+</p>
+</div>
+<p><br /></p>
+<p>If this is a bit abstract and hard to follow, that’s my fault, because it’s quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being from an ethnic minority background on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress <span class="math inline">\(Vote\)</span> on <span class="math inline">\(Ethnicity\)</span> as Figure <a href="#fig:dag4">4</a> implies.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag4"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag4-1.png" alt="ATE estimation, effect of candidate ethnicity on vote choice." width="100%" />
+<p class="caption">
+Figure 4: ATE estimation, effect of candidate ethnicity on vote choice.
+</p>
+</div>
+<p><br /></p>
+<p>Yet you would of course expect that certain people would react differently to this information. Some people won’t care about a candidate’s ethnicity, others will prefer ethnic minority candidates, and others still will prefer non-ethnic minority candidates. So, naturally, you hypothesise that there will be treatment effect heterogeneity. You think that racial attitudes will moderate the effect. That is, those with more positive racial attitudes will be more likely to favour ethnic minority candidates. Importantly, these attitudes have <em>no effect</em> on assignment to treatment or control, but they do have an effect on vote choice, giving Figure <a href="#fig:dag5">5</a>.</p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag5"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag5-1.png" alt="Effect of candidate ethnicity on vote choice with racial attitudes as covariate." width="100%" />
+<p class="caption">
+Figure 5: Effect of candidate ethnicity on vote choice with racial attitudes as covariate.
+</p>
+</div>
+<p><br /></p>
+<p>If this DAG represents an accurate model, then conditioning on <span class="math inline">\(Racial attitudes\)</span> will work. How you do this varies, and Kam and Trussler offer a comprehensive appraisal of different approaches. However, in terms of causal interpretation, you’re on reasonably safe ground. But of course this is very unlikely to be the whole picture. That would look something more like Figure <a href="#fig:dag6">6</a>.</p>
+<p><br /></p>
+<div class="figure" style="text-align: center"><span id="fig:dag6"></span>
+<img src="2019-08-22-dag-kam_files/figure-html/dag6-1.png" alt="Confounders confounders everywhere." width="100%" />
+<p class="caption">
+Figure 6: Confounders confounders everywhere.
+</p>
+</div>
+<p><br /></p>
+<p>I don’t mean to posit that this DAG is accurate, but instead to demonstrate the sort of can of worms we open when we condition on observed covariates.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> As Kam and Trussler put it, analysing experiments in this way puts you ‘at the nexus of experimental and observational approaches’. What this means is that, where random assignment allows model-free, easy identification of causal effects, the inclusion of variables that are <em>observed</em> rather than <em>manipulated</em> in your analysis means that causal interpretation requires the same sorts of assumptions and adjustments that are required in observational research. It is not enough to condition on a covariate without setting out the model assumptions behind that.</p>
+<p>It is very possible that the amount of actual bias in your causal estimates, even in a situation like Figure <a href="#fig:dag6">6</a> will be limited, but the <em>degree</em> of bias is not really the point. The point is that causal assertions imply philosophical commitments, which we violate with model-free approaches involving observational data.</p>
+</div>
+<div id="model" class="section level2 unnumbered">
+<h2>Model</h2>
+<p>A lot of attention seems to have been paid recently to issues such as post-treatment bias, but Kam and Trussler’s paper makes the important point that even variables observed pre-treatment can bias some causal estimates when conditioned on — just not usually your basic ATE. I haven’t really said anything they don’t say more convincingly in their article, but I think DAGs help clarify where the problems come from. I also hope that I haven’t misunderstood or misrepresented their argument.</p>
+<p>As for what can be done: model. If you want to make causal assertions involving observed variables and not just experimental data, you need a causal model. Think about your model. Be transparent about your assumptions. Where possible, you might want to limit the need for such assumptions by <a href="https://www.cambridge.org/core/journals/political-analysis/article/analyzing-causal-mechanisms-in-survey-experiments/05B982CEB2A9E3A10BF0C36F5D12711A">randomly assigning covariates</a>. Conjoint analysis makes this easy, but not everything can be randomised. You can’t change who your respondents are.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>As Kam and Trussler show, though, you might get a slightly more <em>efficient</em> estimate if you adjust for a proper covariate, where one exists. But here we’re talking about bias.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Assume here that ethnic minority status is binary, and the analysis does not distinguish between different ethnicities beyond this.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Incidentally, this DAG implies that adjustment for <span class="math inline">\(Partisanship\)</span> and <span class="math inline">\(Ideology\)</span> would be sufficient.<a href="#fnref3">↩</a></p></li>
+</ol>
 </div>
 
 

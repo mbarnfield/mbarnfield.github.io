@@ -1,234 +1,79 @@
 ---
 output:
   bookdown::html_document2: 
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
     toc: true
     toc_float: true
     toc_depth: 4
-title: Causal inference, political science
+title: Political science blog
 ---
 <br />
 <br />
 
-# DAGging the problem with conditioning on a pre-treatment moderator - August 2019 {-#dagging}
+# Prophetic punditry and sensible suggestions: political science's response to Corbyn's electoral failure {-}
 <br />
 
-## There's no harm in conditioning on pre-treatment variables, right? {-#noharm}
+__*Every political scientist and pundit has an opinion on what is next for Labour and what should be next for Labour, but they are all as politically motivated as one another.*__
 
-I was reading a [paper by Kam and Trussler](https://link.springer.com/content/pdf/10.1007%2Fs11109-016-9379-z.pdf), which I found through Mike DeCrescenzo's handy [causal inference reading list](https://mikedecr.github.io/teaching/causal-inf-2019/), and I was struck by the fact that the problem they highlight is something we consistently overlook in experimental political science. We don't tend to think about the fact that observed covariates are subject to confounding and therefore create complications when used to analyse treatment effect heterogeneity. I was also struck by the fact that a few directed acyclic graphs, which the paper does not employ, could make it really clear where the problem lies. But anyway, where's the harm in estimating conditional average treatment effects based on pre-treatment variables? We know that conditioning on *post*-treatment variables, in an oft-misguided attempt to account for causal mechanisms, [can be problematic](https://p-hunermund.com/2018/08/27/why-you-shouldnt-control-for-post-treatment-variables-in-your-regression/). But surely, if we've measured these things before the experimental exposure, we have nothing to worry about, right...?    
+The result of the 2019 UK general election came as a shock to pundits and political scientists alike, whether they admit it or not. Despite vote shares that were not far off those in the polls for a few weeks prior, the difference in number of seats won by the two major parties was of a scale few had anticipated. Every British political scientist and pundit appears to have taken to Twitter, determined to establish what Labour *should* do in response to this, if not what it *will* do.     
 
-## ... Wrong {-#wrong}
+## Prophetic punditry {-}
 
-Kam and Trussler set out to demonstrate that conditioning on, or interacting treatment exposure with, *observed* --- i.e., not experimentally assigned or manipulated --- variables is likely to introduce bias because the independent variables of interest are no longer exclusively *experimental*. Essentially, the benefit of an experiment, or RCT, is that exposure to the treatment is unconfounded. That is, random assignment is such that individuals with given predetermined characteristics aren't more likely to be exposed than not. This means that if you want to work out the effect of the exposure on the outcome --- usually the estimand of interest is the average treatment effect (ATE) --- it's as simple as Figure \@ref(fig:dag1).
+Nonetheless, as 'scientists', it is often expected of us that we have an answer to questions like the latter. We have data, we have theory, what good are we if we cannot use them to predict the future? This, I would argue, is a troubling way to think about social science and is almost certainly tied up with why experts are supposedly no longer trusted. A particular problem for political science is that people's main exposure to it is through opinion polls, which -- despite [insistence to the contrary](https://www.washingtonpost.com/news/monkey-cage/wp/2013/12/10/a-poll-is-a-snapshot-not-a-forecast/) -- are at least *understood* as being predictions. Thereby 'incorrect' polls become an indictment of our discipline.        
 
-<br />
+Yet, although we might believe in avoiding this association of political science as a predictor of electoral futures, we occasionally can't help but dabble in prophecy. It seems reasonable to expect our predictions to be uncommonly sound and that people should attach some weight to them. We have data, we have theory. But of course, often we don't. What is (read: 'are') the data, let alone theory, on which to base any sort of prediction of who, for example, the next leader of the Labour Party will be? By now, perhaps we have betting odds. We don't have a poll of the members who choose the leader, or anything approximating such an 'objective' measure. We don't have data, we have *priors*.     
 
-```{r dag1, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='ATE estimation, DAG-style.'}
-\begin{center}
+We also don't really have theory. What we have theory about, instead, is how people nonetheless making these predictions come about arriving at their conclusions. [Andrew Little argues](https://onlinelibrary.wiley.com/doi/full/10.1111/ajps.12435), essentially, that beliefs about politics are updated in response to new information all the time, starting with a 'prior' and changing in accordance with new 'likelihoods'. In terms of the Labour leadership, a given person might have a belief, say, about how likely it is that the leader will be from the left of the party. With time, once a contest is underway, membership polling and other information might start to reshape this perceived probability, but absent any such information, the person only has their prior. This prior will likely be very 'wide' or uncertain, meaning essentially that the probability of a leader coming from the left could be anything from very unlikely to very likely. That is, fairly even probability is assigned to these 'probabilities' of a left-wing candidate taking over -- because how on Earth could we possibly know?          
 
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+Little's main point, however, is that in drawing a 'conclusion' about such a belief, we are prone to substantial bias or 'distortion' when the belief pertains to something over which we have a clear preference. Most people involved in British politics have a meaningful preference about what sort of politician they'd like to see as the new Labour leader.[^1] When they then tell you what they predict will happen, this preference -- we theorise -- will distort how they draw from the probable outcomes.     
 
-\begin{tikzpicture}[scale = .8]
+This much is 'just' theory, but take a post-election experience of mine as anecdotal evidence. Two anonymous academics, one more sympathetic to 'Corbynism' and the other broadly disillusioned with the Labour party in recent years, standing before a group of mostly disheartened activists, are asked 'what next?'. The Corbyn sympathiser arrives at the conclusion that the party would likely elect a new leader from the left of its ranks. Her colleague responds that, no, someone from the centre is more likely. What is the difference here? Both are British politics experts, both have a deep understanding of the Labour Party, there is no information disparity. The difference is in their *preferences*. I like to call opinions such as these 'blank slate' predictions. Our considerable capacity for [wishful thinking](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1559-1816.1991.tb00514.x) and little else, even as 'objective' scientists, determines what we predict.     
 
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Exposure$};
-\node (o)  at (2, 0) [plain] {$Outcome$};
+## Sensible suggestions {-}
 
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
+If we are capable of such distortion when making supposedly objective *predictions*, it seems likely that we will be even worse at making *suggestions*. These have, indeed, been far more common in the days since the election. While we are aware of the uncertainty of our priors about what will happen, we seem all too certain about what should happen, and happy to say what that is.     
 
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
+This suggestion-making has been characterised by a tendency to urge Labour back to 'sensible' territory. Corbyn failed, twice, and this time miserably. The country has rejected his politics. You can't win an election from the left. Stop blaming Brexit. Listen to the #PeopleOnTheDoorstep. This is tiresome not because I disagree, but because it is founded on false pretences about its motivations. It is convenient for these suggestion-makers that the politics to which they are advocating a return is one which aligns with the perceived character of their profession; 'sensible' centrism appears the logical suggestion for an academic -- particularly, a quantitative social scientist -- to make. What works. What wins elections. What comes as close as possible to Tory without being Tory. Blue Labour. Probably one of the Milibands, but not the dad and not the one who already lost that one time. Moderation. How could someone whose career is about truth, knowledge, arriving at informed conclusions, possibly advocate anything else?      
 
-<br />
+It is precisely because their suggestions 'make sense' that these people are able to mask ideological preferences behind some notion of objectivity, which is of course nearly always a mirage. I want to argue that, instead, these suggestions are no less ideological than the statements made by those on the left of the party, imploring it to continue on its current trajectory. We miss this because we mistake perceived ideological extremity for ideology *per se*, or for fanaticism, or radicalism in its negative sense. Those who advocate a centrist politics are somehow beyond ideology because of their supposed moderation, the 'consensual' support for their position.    
 
-Randomisation here makes it such that there can never be any arrows going into $Exposure$, because it is completely randomly assigned (or, as-good-as). This means that even if there are other things that cause $Outcome$, simple bivariate linear regression of $Outcome$ on $Exposure$ will get you an unbiased estimate of your ATE.[^1]
+Of course, we should also allow room for the possibility that many of these commentators are honest in their motivations. They want a Labour government -- or anything but a Conservative one -- and in their experience it was Tony Blair who made this a reality. If a more 'moderate' politics is how Labour get into power then this is what they should pursue. This just simply is not the whole picture. We know too much about political psychology to buy that it is. Even if it were the whole picture, ideological pragmatism is not some normatively laudable virtue. Political scientists *know this*, so it is just not tenable to imagine that they all but unanimously ignore it in order to keep the Tories out.     
 
-[^1]: As Kam and Trussler show, though, you might get a slightly more *efficient* estimate if you adjust for a proper covariate, where one exists. But here we're talking about bias.
+The most troubling part of this is the tendency to accuse the 'other side' -- here, the (particularly, young) left of the Labour Party -- of somehow blindly ignoring the obvious and doing exactly what pundits are claiming they themselves are *not* doing. [Tom O'Grady](https://twitter.com/DrTomD_OG) takes issue with this in a recent Twitter thread, including the following tweets: 
 
-The problem is, Kam and Trussler point out, that we don't very often stop here. We want to know more about why our treatments have their effects, and importantly in this case, *for whom* they have these effects. That is, we often want to know whether different people are affected differently by treatments. Generically, is the effect dependent on some other, individual-level variable of interest? Specifically, is the effect of candidate race dependent on respondents' levels of xenophobic attitudes? Does the effect of policy framing vary according to levels of political awareness? From my own research, is the effect of party popularity on voting behaviour ideologically bounded?    
 
-To answer these sorts of questions, an intuitive approach is to condition on measures of relevant variables, taken prior to exposure. We know this avoids post-treatment bias, so it seems safe. All we're measuring is how an effect varies by some other factor. We might just visualise the different effect sizes by subgroup, or even include an interaction term for a given covariate with the treatment, for a more formal test.    
 
-When it comes to experiments, I'm particularly interested in [conjoint analysis](http://web.mit.edu/teppei/www/research/conjoint.pdf), and it is worth noting that the potential problem discussed here is very relevant to conjoints. Leeper, Hobolt and Tilley recently published a [paper in Political Analysis](https://www.cambridge.org/core/journals/political-analysis/article/measuring-subgroup-preferences-in-conjoint-experiments/4F2C21AC02753F1FFF2F5EA0F943C1B2) all about measuring heterogeneous treatment effects in conjoints, demonstrating that the prevalent approach of seeing how AMCEs vary by subgroup is flawed, because of the reliance on a reference category. I won't explain their argument in full, but it's easy to see how such an approach could be misguidedly applied to the conjoint framework based on its prevalence in traditional experiments, where it is not problematic *for this reason*. Both approaches, however, risk falling foul of Kam and Trussler's point.   
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">So when people of my age hear supposedly sensible centrists saying that they are naive and stupid for supporting a party, to their eyes, simply wants to end climate change, solve the housing crisis and improve public services, they are baffled. They think you&#39;re mad.</p>&mdash; Tom O&#39;Grady (DrTomD_OG) <a href="https://twitter.com/DrTomD_OG/status/1205450350276296704?ref_src=twsrc%5Etfw">December 13, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-## Visualising the problem {-#visualising}
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Why? Because the media constantly tells them that they are naive idiots for supporting a party that wants to address the issues they care about. It frankly looks like a conspiracy to them, and saying that Corbynism needs to die is going to make that much, much worse</p>&mdash; Tom O&#39;Grady (DrTomD_OG) <a href="https://twitter.com/DrTomD_OG/status/1205450354395111425?ref_src=twsrc%5Etfw">December 13, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-The reality, of course, is very rarely similar to what is implied by Figure \@ref(fig:dag1). It is almost always the case that the outcome of an experiment is subject to more than just the exposure. Otherwise, this would mean that every single person in an exposure group would respond to the treatment and nobody in the control group would react as if they had been treated. In a binary vote choice experiment where a treatment group is told the candidate is female and the exposure group receives no such information, we would expect all of the treatment group to vote for the candidate. Of course, this is never what happens (obviously the example is contrived, but you get the point). What *does* happen is that there are other factors which contribute to the decision, which are not manipulated by the treatment. Figure \@ref(fig:dag2) depicts this graphically.
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;d like to urge fellow political scientists not to make the mistake of writing off the current Labour party intellectually. There is no way that the membership will elect a new leader that doesn&#39;t promise to continue Corbynism. Let&#39;s not call those people naive fools</p>&mdash; Tom O&#39;Grady (DrTomD_OG) <a href="https://twitter.com/DrTomD_OG/status/1205450357029167106?ref_src=twsrc%5Etfw">December 13, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<br />
 
-```{r dag2, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Covariate, DAG-style.'}
-\begin{center}
+The pursual of so-called 'Corbynism' -- [written off](https://link.springer.com/article/10.1057%2Fs41293-019-00115-6) since its inception by political science and punditry -- is seen as a purely ideological naivety which will get the party nowhere electorally and therefore should be abandoned. But, of course, as [Professor Will Jennings](https://twitter.com/drjennings/status/1206362405804158976) puts it, 'political parties are coalitions of diverse interests, identities and opinions'. To expect proponents of one such opinion to completely change their minds just because it came to the fore and did not lead to electoral success is farfetched. To do this while belittling these people, handing out I-told-you-so's about the superiority of the good old New Labour days, under the guise of electoral pragmatism, is farcical. The Labour Party is known to be a [broad church](https://theconversation.com/labour-conference-a-major-stress-test-for-the-broad-church-103540), and it will continue to be so, and its diverse 'interests, identities and opinions' will continue to be defended by those holding them. Rightly so. Politics *is* diversity.     
 
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
+The point of political engagement is surely to pursue a vision of what one thinks the world should be. That many political scientists do not agree with the left of the Labour Party on what that world looks like is not the problem. The problem is the idea that this is not an ideological disagreement, but a battle between something sensible and something naive, that it's purely about 'what works'. The idea that we can and should hide behind objectivity is flawed, because political objectivity among highly politically engaged actors is an illusion. So let's stop pretending our suggestions and predictions aren't biased, while everyone else's are, or stop making them at all.      
 
-\begin{tikzpicture}[scale = .8]
 
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Exposure$};
-\node (o) at (2, 0) [plain] {$Outcome$};
-\node (c) at (0, 2) [plain] {$Covariate$};
+# Other posts {-}
 
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
-\draw[post] (c.south)  to (o.north) {};
+<a href="2019-08-22-dag-kam.html">DAGging the problem with conditioning on a pre-treatment moderator</a>  
 
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
 
-<br />
 
-Avid DAGgers will note that this presents no problem for estimating the ATE, because there are no confounders opening up ['backdoor paths'](https://www.youtube.com/watch?v=l_7yIUqWBmE) to bias the causal estimate. What Figure \@ref(fig:dag2) shows, though, is that for a given individual, more goes into how they respond in an experiment than the treatment alone. They bring ideological, partisan, and other biases that skew their behaviour and responses. This means that treatment effects are not entirely *homogeneous*.   
 
-You might be starting to realise, though, that even Figure \@ref(fig:dag2) is likely a very simplified version of reality in most cases. What causes the covariate itself? It doesn't come from nowhere. Does the cause of that covariate have its own effect on $Outcome$? The potential backdoor paths are endless.   
 
-This leads me to the main point. In their paper, Kam and Trussler demonstrate how different model specifications minimise or increase bias based on the amount of covariates and whether they have interactive effects. I think the broad point, however, is worth stating clearly: in *most* cases, regardless of whether you hypothesise that $Treatment$ and $Covariate$ have an interactive effect or that they are just covariates, conditioning on $Covariate$ is likely to introduce bias. (There's the point. I got to it. Only took me 1000 words.)    
 
-Consider Figure \@ref(fig:dag3). Uh oh. It looks a lot like by conditioning on $Covariate$ we've opened up a non-causal path through $Confound$. Often this won't have a meaningful effect on your ATE estimate, as Kam and Trussler show, but the effects of your covariates and interaction terms are going to be off the mark. Perhaps **more importantly**, you will not be able to assign them a causal interpretation with a standard model-free experimental approach. That is, they have no causal meaning unless you explore the causal model and make feasible, transparent assumptions about unconfoundedness. 
 
-<br />
 
-```{r dag3, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Bias, DAG-style.'}
-\begin{center}
+[^1]: I am simplifying here. What these people likely have are more general ideological and partisan 'core beliefs' which the Labour leadership is associated with as an 'auxiliary belief'. 
 
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
 
-\begin{tikzpicture}[scale = .8]
 
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Exposure$};
-\node (o) at (2, 0) [plain] {$Outcome$};
-\node (c) at (0, 2) [plain] {$Covariate$};
-\node (z) at (4, 2) [plain] {$Confound$};
 
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
-\draw[post] (c.south)  to (o.north) {};
-\draw[post] (z.west) to (c.east) {};
-\draw[post] (z.south) to (o.north) {};
 
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
 
-<br />
 
-If this is a bit abstract and hard to follow, that's my fault, because it's quite simple when you apply a potential real-world example. Imagine a simple experiment in which you want to know the effect of a candidate being from an ethnic minority background on vote choice. You set up a treatment group and a control group, with the former being told the candidate is from an ethnic minority and the control group receiving no such information. To estimate the ATE, you simply regress $Vote$ on $Ethnicity$ as Figure \@ref(fig:dag4) implies.[^2]
 
-[^2]: Assume here that ethnic minority status is binary, and the analysis does not distinguish between different ethnicities beyond this.
 
-<br />
-
-```{r dag4, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='ATE estimation, effect of candidate ethnicity on vote choice.'}
-\begin{center}
-
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
-
-\begin{tikzpicture}[scale = .8]
-
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Ethnicity$};
-\node (o)  at (2, 0) [plain] {$Vote$};
-
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
-
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
-
-<br />
-
-Yet you would of course expect that certain people would react differently to this information. Some people won't care about a candidate's ethnicity, others will prefer ethnic minority candidates, and others still will prefer non-ethnic minority candidates. So, naturally, you hypothesise that there will be treatment effect heterogeneity. You think that racial attitudes will moderate the effect. That is, those with more positive racial attitudes will be more likely to favour ethnic minority candidates. Importantly, these attitudes have *no effect* on assignment to treatment or control, but they do have an effect on vote choice, giving Figure \@ref(fig:dag5).
-
-<br />
-
-```{r dag5, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Effect of candidate ethnicity on vote choice with racial attitudes as covariate.'}
-\begin{center}
-
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
-
-\begin{tikzpicture}[scale = .8]
-
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Ethnicity$};
-\node (o) at (2, 0) [plain] {$Vote$};
-\node (c) at (0, 2) [plain] {$Racial attitudes$};
-
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
-\draw[post] (c.south) to (o.north) {};
-
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
-
-<br />
-
-If this DAG represents an accurate model, then conditioning on $Racial attitudes$ will work. How you do this varies, and Kam and Trussler offer a comprehensive appraisal of different approaches. However, in terms of causal interpretation, you're on reasonably safe ground. But of course this is very unlikely to be the whole picture. That would look something more like Figure \@ref(fig:dag6).
-
-<br />
-
-```{r dag6, echo=FALSE, engine='tikz', fig.align = "center", out.width="100%", fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Confounders confounders everywhere.'}
-\begin{center}
-
-\tikzstyle{plain}=[rectangle, draw=none, minimum height = 5mm, minimum width = 5mm]
-\tikzstyle{post}=[->,shorten >=1pt,draw = black, thick, font = \large]
-\tikzstyle{dashes}=[->,shorten >=1pt,draw = black, dashed, thick, font = \large]
-
-\begin{tikzpicture}[scale = .8]
-
-% Specify nodes
-\node (e) at (-2, 0)   [plain] {$Ethnicity$};
-\node (o) at (2, 0) [plain] {$Vote$};
-\node (c) at (0, 2) [plain] {$Racial attitudes$};
-\node (p) at (5, 2) [plain] {$Partisanship$};
-\node (a) at (2.5, 4) [plain] {$Age$};
-\node (i) at (7, 1) [plain] {$Ideology$};
-
-% Specify edges
-\draw[post] (e.east)  to (o.west) {};
-\draw[post] (c.south) to (o.north) {};
-\draw[post] (a.210)  to (c.north) {};
-\draw[post] (a.330) to (p.north) {};
-\draw[post] (p.west)  to (c.east) {};
-\draw[post] (i.170) to (p.south) {};
-\draw[post] (i.west) to (c.350) {};
-\draw[post] (i.190) to (o.east) {};
-\draw[post] (p.south) to (o.north) {};
-
-\end{tikzpicture}
-\end{center}
-\vspace{.5cm}
-```
-
-<br />
-
-I don't mean to posit that this DAG is accurate, but instead to demonstrate the sort of can of worms we open when we condition on observed covariates.[^3] As Kam and Trussler put it, analysing experiments in this way puts you 'at the nexus of experimental and observational approaches'. What this means is that, where random assignment allows model-free, easy identification of causal effects, the inclusion of variables that are *observed* rather than *manipulated* in your analysis means that causal interpretation requires the same sorts of assumptions and adjustments that are required in observational research. It is not enough to condition on a covariate without setting out the model assumptions behind that.   
-
-[^3]: Incidentally, this DAG implies that adjustment for $Partisanship$ and $Ideology$ would be sufficient.
-
-It is very possible that the amount of actual bias in your causal estimates, even in a situation like Figure \@ref(fig:dag6) will be limited, but the *degree* of bias is not really the point. The point is that causal assertions imply philosophical commitments, which we violate with model-free approaches involving observational data.   
-
-## Model {-#model}
-
-A lot of attention seems to have been paid recently to issues such as post-treatment bias, but Kam and Trussler's paper makes the important point that even variables observed pre-treatment can bias some causal estimates when conditioned on --- just not usually your basic ATE. I haven't really said anything they don't say more convincingly in their article, but I think DAGs help clarify where the problems come from. I also hope that I haven't misunderstood or misrepresented their argument.    
-
-As for what can be done: model. If you want to make causal assertions involving observed variables and not just experimental data, you need a causal model. Think about your model. Be transparent about your assumptions. Where possible, you might want to limit the need for such assumptions by [randomly assigning covariates](https://www.cambridge.org/core/journals/political-analysis/article/analyzing-causal-mechanisms-in-survey-experiments/05B982CEB2A9E3A10BF0C36F5D12711A). Conjoint analysis makes this easy, but not everything can be randomised. You can't change who your respondents are. 
