@@ -26,4 +26,8 @@ All the code I write that is worth sharing is on [my GitHub page](https://github
 
 # Shiny
 
-[`england_bandwagon_conjoint`](https://mbarnfield.shinyapps.io/england_bandwagon_conjoint/) --- Testing a conjoint experiment I am working on for an upcoming project.
+[`england_bandwagon`](https://mbarnfield.shinyapps.io/england_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
+
+[`denmark_bandwagon`](https://mbarnfield.shinyapps.io/denmark_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
+
+[`democrat_bandwagon`](https://mbarnfield.shinyapps.io/democrat_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
