@@ -5,7 +5,7 @@
            
 <img src="images/mgb.jpg" style="width:20%; border:5px solid; margin-right: 20px" align="left">
 
-I am a political science PhD student at Queen Mary University of London, interested in comparative political behaviour and public opinion. I'm also, predictably, into `R`, as both a user and developer.
+I am a political science PhD student at Queen Mary University of London, interested in comparative political behaviour and public opinion. I'm also, predictably, into `R`, as both a user and developer. You can see my full [CV here](https://github.com/mbarnfield/cv/blob/master/cv_files/mgb_cv.pdf). 
 
 My solo-authored article on conceptual issues in research on the 'bandwagon effect' is OnlineFirst at [Political Studies Review](https://journals.sagepub.com/doi/full/10.1177/1478929919870691). My co-authored research note on why party members quit, with [Tim Bale](https://twitter.com/ProfTimBale), is OnlineFirst at [Party Politics](https://journals.sagepub.com/doi/full/10.1177/1354068820962035). I am also in the process of adapting chapters of my PhD thesis for publication as journal articles. Alongside this I do some software development, including [`cjbae`](https://github.com/mbarnfield/cjbae), an `R` package I'm writing with [Jack Bailey](https://twitter.com/PoliSciJack). 
 
