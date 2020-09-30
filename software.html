@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -89,7 +88,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -238,6 +236,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -266,6 +265,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -403,12 +408,6 @@ div.tocify {
 <div id="github" class="section level1">
 <h1>GitHub</h1>
 <p>All the code I write that is worth sharing is on <a href="https://github.com/mbarnfield">my GitHub page</a>, and I intend to add more there soon.</p>
-</div>
-<div id="shiny" class="section level1">
-<h1>Shiny</h1>
-<p><a href="https://mbarnfield.shinyapps.io/england_bandwagon/"><code>england_bandwagon</code></a> — Testing a conjoint experiment I am working on for an upcoming project.</p>
-<p><a href="https://mbarnfield.shinyapps.io/denmark_bandwagon/"><code>denmark_bandwagon</code></a> — Testing a conjoint experiment I am working on for an upcoming project.</p>
-<p><a href="https://mbarnfield.shinyapps.io/democrat_bandwagon/"><code>democrat_bandwagon</code></a> — Testing a conjoint experiment I am working on for an upcoming project.</p>
 </div>
 
 

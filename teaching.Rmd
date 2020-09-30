@@ -16,3 +16,4 @@ This academic year I will be running seminars on:
 
 - POL112 Introduction *into* Politics
 - POL252 Political Research
+- POL269 Political Data Research

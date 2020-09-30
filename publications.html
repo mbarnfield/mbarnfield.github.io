@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -89,7 +88,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -238,6 +236,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -266,6 +265,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -390,6 +395,7 @@ div.tocify {
 <p><br /></p>
 <div id="journal-articles" class="section level1">
 <h1>Journal articles</h1>
+<p>Barnfield, M. and Bale, T. (2020) ‘Leaving the red Tories’: Ideology, leaders, and why party members quit. <a href="https://journals.sagepub.com/doi/full/10.1177/1354068820962035">OnlineFirst at <em>Party Politics</em>.</a></p>
 <p>Barnfield, M. (2019) Think twice before Jumping on the Bandwagon: Clarifying Concepts in Research on the Bandwagon Effect. <a href="https://journals.sagepub.com/doi/full/10.1177/1478929919870691">OnlineFirst at <em>Political Studies Review</em>.</a></p>
 </div>
 

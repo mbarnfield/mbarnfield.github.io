@@ -23,11 +23,3 @@ title: Software
 # GitHub
 
 All the code I write that is worth sharing is on [my GitHub page](https://github.com/mbarnfield), and I intend to add more there soon.
-
-# Shiny
-
-[`england_bandwagon`](https://mbarnfield.shinyapps.io/england_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
-
-[`denmark_bandwagon`](https://mbarnfield.shinyapps.io/denmark_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
-
-[`democrat_bandwagon`](https://mbarnfield.shinyapps.io/democrat_bandwagon/) --- Testing a conjoint experiment I am working on for an upcoming project.
