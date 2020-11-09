@@ -12,7 +12,7 @@ title: Teaching
                
 # Queen Mary University of London
 
-This academic year I will be running seminars on:
+## Teaching assistant
 
 - POL112 Introduction *into* Politics
 - POL252 Political Research
