@@ -12,8 +12,9 @@ title: Teaching
                
 # Queen Mary University of London
 
-## Teaching assistant
+## Teaching Associate
 
 - POL112 Introduction *into* Politics
 - POL252 Political Research
 - POL269 Political Data Research
+- POLM083 Introduction to Quantitative Methods (Postgraduate)

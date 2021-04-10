@@ -13,6 +13,7 @@
 
 <title>Teaching</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
@@ -27,6 +28,15 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -72,6 +82,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -362,19 +373,19 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="http://github.com/mbarnfield">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/m_barnfield">
-    <span class="fa fa-twitter fa-lg"></span>
+    <span class="fas fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.reddit.com/user/pm_me_tidy_code">
-    <span class="fa fa-reddit fa-lg"></span>
+    <span class="fas fa-reddit fa-lg"></span>
      
   </a>
 </li>
@@ -395,12 +406,13 @@ div.tocify {
 <p><br /></p>
 <div id="queen-mary-university-of-london" class="section level1">
 <h1>Queen Mary University of London</h1>
-<div id="teaching-assistant" class="section level2">
-<h2>Teaching assistant</h2>
+<div id="teaching-associate" class="section level2">
+<h2>Teaching Associate</h2>
 <ul>
 <li>POL112 Introduction <em>into</em> Politics</li>
 <li>POL252 Political Research</li>
 <li>POL269 Political Data Research</li>
+<li>POLM083 Introduction to Quantitative Methods (Postgraduate)</li>
 </ul>
 </div>
 </div>
@@ -416,7 +428,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -455,7 +467,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
